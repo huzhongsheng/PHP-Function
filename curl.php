@@ -47,6 +47,13 @@
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         // 不从证书中检查SSL加密算法是否存在
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        /*
+         * 20180131批注：
+         * 请求https://ip.xxx时会报302错误，或请求不到数据。
+         * 解决方法：
+         * curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+         * 关闭ssl检查ssl加密算法
+         * */
 
         $output = curl_exec($ch);
         curl_close($ch);
