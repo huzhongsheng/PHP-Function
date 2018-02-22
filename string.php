@@ -64,4 +64,22 @@
             .substr($charid,20,12);
         return $uuid;
     }
+    /*
+     * @function 生成随机字符串
+     *@param $length int 长度
+     * 唯一性不如 ‘generateRandomString’方法
+     * */
+    function randString($length = 20){
+
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $randomString;
+    }
 ?>
