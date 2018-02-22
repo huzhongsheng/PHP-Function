@@ -60,13 +60,14 @@
 
         return $output;
     }
+
     /*
      * @param string $url 远程图片地址
      * @param string $filename 保存文件名称
      * @param string $ext 文件后缀名
      * @return string 文件路径，保存到新浪云stroage
      * */
-    private function download($url, $filename='', $ext='jpg') {
+    function download($url, $filename='', $ext='jpg') {
         if(empty($filename)){
             $filename = substr(md5(time().rand(10,99)),10, 8);
         }

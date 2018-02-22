@@ -48,4 +48,20 @@
     function filterEmoji($str){
         return preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $str);
     }
+    /*
+     * @function 生成唯一字符串
+     * 可用于文件名，用户token等
+     * */
+    function generateRandomString(){
+
+        $charid = strtoupper(md5(uniqid(mt_rand(), true)));
+
+        $hyphen = chr(45);// "-"
+        $uuid = substr($charid, 0, 8).$hyphen
+            .substr($charid, 8, 4).$hyphen
+            .substr($charid,12, 4).$hyphen
+            .substr($charid,16, 4).$hyphen
+            .substr($charid,20,12);
+        return $uuid;
+    }
 ?>
