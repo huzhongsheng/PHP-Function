@@ -102,6 +102,28 @@
         ob_end_clean();
         return $jpgPath;
     }
+    /*
+     * 修改图片尺寸
+     * @param string $imgsrc jpg格式图像路径
+     * @param string $imgdst jpg格式图像保存文件名
+     * @param string $imgwidth要改变的宽度
+     * @param string $imgheight要改变的高度
+     * */
+    function resizejpg($imgsrc,$imgdst,$imgwidth,$imgheight){
+
+        //取得图片的宽度,高度值
+        $arr = getimagesize($imgsrc);
+        header("Content-type: image/jpg");
+        $imgWidth = $imgwidth;
+        $imgHeight = $imgheight;
+        // Create image and define colors
+        $imgsrc = imagecreatefromjpeg($imgsrc);
+        $image = imagecreatetruecolor($imgWidth, $imgHeight); //创建一个彩色的底图
+        imagecopyresampled($image, $imgsrc, 0, 0, 0, 0,$imgWidth,$imgHeight,$arr[0], $arr[1]);
+        imagepng($image);
+        imagedestroy($image);
+    }
+
     /***png图片透明处理***/
     $background = imagecreatefrompng('xxx/xxx.png');//必须是png图片
     imagesavealpha($background, true);//透明通道开启
